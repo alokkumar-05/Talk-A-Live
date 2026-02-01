@@ -3,6 +3,8 @@ import authRoutes from "./routes/auth.route.js";
 import dotenv from "dotenv"; 
 import { connectDB } from "./lib/db.js";
 import cookieParser from "cookie-parser";
+import messageRoutes from "./routes/message.route.js";
+
 
 dotenv.config()
 const app = express();
@@ -14,9 +16,10 @@ app.get("/", (req, res) => {
   res.send("Talk-A-Live Backend is running 🚀");
 });
 
-app.use("/api/auth",authRoutes)
 
 const PORT = process.env.PORT || 5001 ;
+app.use("/api/auth",authRoutes);
+app.use("/api/message",messageRoutes)
 
 
 app.listen(PORT,()=>{
