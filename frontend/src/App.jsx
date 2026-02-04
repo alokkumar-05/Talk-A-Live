@@ -19,6 +19,10 @@ const App = () => {
   const { theme } = useThemeStore();
 
   console.log({ onlineUsers });
+ 
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", theme);
+  }, [theme]);
 
   useEffect(() => {
     checkAuth();
@@ -34,7 +38,7 @@ const App = () => {
     );
 
   return (
-    <div data-theme={theme}>
+     <div data-theme={theme} className="min-h-screen bg-base-100 text-base-content">
       <Navbar />
 
       <Routes>
