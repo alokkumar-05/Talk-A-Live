@@ -13,6 +13,8 @@ const ChatContainer = () => {
     getMessages,
     isMessagesLoading,
     selectedUser,
+    subscribeToMessages,
+    unsubscribeFromMessages,
   } = useChatStore();
 
   const { authUser } = useAuthStore();
@@ -22,7 +24,9 @@ const ChatContainer = () => {
   useEffect(() => {
     if (!selectedUser) return;
     getMessages(selectedUser._id);
-  }, [selectedUser, getMessages]);
+    subscribeToMessages();
+    return ()=> unsubscribeFromMessages();
+  }, [selectedUser, getMessages ,subscribeToMessages,unsubscribeFromMessages]);
 
   // ✅ Auto-scroll to latest message
   useEffect(() => {
