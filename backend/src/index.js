@@ -24,9 +24,10 @@ app.use(
   })
 );
 
-app.get("/", (req, res) => {
+app.get("/health", (req, res) => {
   res.send("Talk-A-Live Backend is running 🚀");
 });
+
 
 app.use("/api/auth", authRoutes);
 app.use("/api/messages", messageRoutes);
