@@ -19,6 +19,10 @@ const ChatHeader = () => {
               <img
                 src={selectedUser.profilePic || "/avatar.png"}
                 alt={selectedUser.fullName}
+                onError={(e) => {
+                  e.target.onerror = null;
+                  e.target.src = "/avatar.png";
+                }}
               />
             </div>
           </div>

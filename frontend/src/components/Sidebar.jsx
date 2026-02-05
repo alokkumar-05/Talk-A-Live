@@ -28,7 +28,7 @@ const Sidebar = () => {
 
   return (
     <aside className="h-full w-20 lg:w-72 border-r border-base-300 bg-base-200 flex flex-col transition-all duration-200">
-      
+
       {/* Header */}
       <div className="border-b border-base-300 w-full p-5">
         <div className="flex items-center gap-2">
@@ -66,10 +66,9 @@ const Sidebar = () => {
             className={`
               w-full p-3 flex items-center gap-3
               hover:bg-base-300 transition-colors
-              ${
-                selectedUser?._id === user._id
-                  ? "bg-base-300 ring-1 ring-base-300"
-                  : ""
+              ${selectedUser?._id === user._id
+                ? "bg-base-300 ring-1 ring-base-300"
+                : ""
               }
             `}
           >
@@ -78,6 +77,10 @@ const Sidebar = () => {
                 src={user.profilePic || "/avatar.png"}
                 alt={user.fullName}
                 className="size-12 object-cover rounded-full"
+                onError={(e) => {
+                  e.target.onerror = null;
+                  e.target.src = "/avatar.png";
+                }}
               />
 
               {onlineUsers.includes(user._id) && (

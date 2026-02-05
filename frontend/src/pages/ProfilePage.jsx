@@ -3,7 +3,7 @@ import { useAuthStore } from "../store/useAuthStore";
 import { Camera, Mail, User } from "lucide-react";
 
 const ProfilePage = () => {
-  const { authUser, isUpdatingProfile, updateProfile} = useAuthStore();
+  const { authUser, isUpdatingProfile, updateProfile } = useAuthStore();
   const [selectedImg, setSelectedImg] = useState(null);
 
   const handleImageUpload = async (e) => {
@@ -36,14 +36,12 @@ const ProfilePage = () => {
             <div className="relative">
               <img
                 // Use a leading slash to point to the public directory
-                src={selectedImg ?? authUser?.profilePic ?? "/avatar.png"}
-
+                src={selectedImg || authUser.profilePic || "/avatar.png"}
                 alt="Profile"
                 className="size-32 rounded-full object-cover border-4"
                 onError={(e) => {
-                  if (e.target.src !== window.location.origin + "/avatar.png") {
-                    e.target.src = "/avatar.png";
-                  }
+                  e.target.onerror = null; // Prevent infinite loop
+                  e.target.src = "/avatar.png";
                 }}
 
               />
